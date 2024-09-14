@@ -1,0 +1,13 @@
+FROM node:20.5.1-alpine
+
+WORKDIR /migration_account
+
+COPY . .
+COPY .env.example .env
+
+RUN npm install -g @nestjs/cli
+
+RUN npm install
+RUN npm run build
+
+CMD ["npm", "migration:run" ]
