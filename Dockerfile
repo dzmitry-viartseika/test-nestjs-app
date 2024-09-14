@@ -11,4 +11,4 @@ RUN npm install -g @nestjs/cli argon2 ts-node rimraf
 RUN npm install
 RUN npm run build
 
-CMD ["npm", "start:prod" ]
+CMD ["npm", "run", "start:prod"]
