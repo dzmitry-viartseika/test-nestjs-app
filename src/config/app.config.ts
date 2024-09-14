@@ -1,8 +1,8 @@
-import { isEnum, IsString } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
 import { Environment } from './types/enums/configurations.enums';
 
 export class ApplicationConfig {
-  @isEnum(Environment, {always: true})
+  @IsEnum(Environment, {always: true})
   NODE_ENV: Environment;
 
   @IsString({always: true})
