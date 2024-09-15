@@ -8,7 +8,6 @@ export class CreateUserDto {
     required: true,
     type: String,
   })
-
   @Expose()
   @IsString()
   userId: string;
