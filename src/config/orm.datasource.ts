@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-// import migrations from '../module/database/migrations';
-// import { UserEntity } from '../module/user/entities/user.entity';
+import migrations from '../module/database/migrations';
+import { UserEntity } from '../module/user/entities/user.entity';
 import * as dotenv from 'dotenv';
 
 const ENV_FILE = `.env`;
@@ -15,9 +15,8 @@ export default new DataSource({
   database: process.env.DB_DATABASE,
   port: +process.env.DB_PORT,
   synchronize: true,
-  // entities: [UserEntity],
-  entities: [],
-  // migrations,
+  entities: [UserEntity],
+  migrations,
   migrationsRun: process.env.DB_MIGRATIONS_RUN === 'true',
   migrationsTableName: process.env.DATABASE_MIGRATIONS_TABLE_NAME,
 });
