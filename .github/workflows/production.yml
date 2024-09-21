@@ -1,0 +1,13 @@
+name: Production Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Enter github branch name to be deployed'
+        required: true
+        default: 'master'
+      description:
+        description: 'Enter description about deployment'
+        required: true
+        default: 'New feature release'
