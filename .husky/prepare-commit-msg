@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+. "$(dirname -- "$0")/_/husky.sh"
+
+FILE=$1
+MESSAGE=$(cat $FILE)
+branch=$(git rev-parse --abbrev-ref HEAD)
+regex="^((feat|fix|chore|style|refactor|perf|test|etc)\/([a-zA-Z\_\-]+)\/)([A-Z]{2,18}-[0-9]+)(.*)$"
+message="There is something wrong with your branch name. Branch names must match this document. You should rename your branch to a valid name and try again."
+
+if [[ $branch =~ $regex ]]; then
+  prefix=${BASH_REMATCH[4]}
+  if [[ "$MESSAGE" != "$prefix"* ]]
+  then
+    echo "[$prefix] $MESSAGE" > $FILE
+    exit 0;
+  fi
+else
+  echo "$message"
+  exit 1
+fi
