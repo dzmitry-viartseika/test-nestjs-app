@@ -64,4 +64,12 @@ export class CreateUserDto {
     type: String,
   })
   email: string;
+
+  @ApiProperty({
+    description: 'User balance',
+    type: String,
+  })
+  @IsString()
+  @Expose()
+  balance: string;
 }
