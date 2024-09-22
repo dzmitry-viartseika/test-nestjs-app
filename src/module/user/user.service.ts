@@ -10,7 +10,6 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async create(user: CreateUserDto): Promise<void> {
-    console.log('user111111', user);
     const salt = crypto.randomBytes(32);
     const hash = await argon.hash(user.password, { salt });
 
@@ -30,7 +29,7 @@ export class UserService {
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+    return `This action updates a #${id} user with updated information ${updateUserDto}`;
   }
 
   remove(id: number) {
