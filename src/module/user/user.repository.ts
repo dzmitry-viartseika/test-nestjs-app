@@ -2,6 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { DeepPartial, Repository, SelectQueryBuilder } from 'typeorm';
 import { CheckExistUserParams, FindUserParams } from './user.types';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 export class UserRepository {
   constructor(
@@ -19,7 +20,7 @@ export class UserRepository {
     return this.userRepository.findOneBy({ userId });
   }
 
-  async findUserAndCount(params: any): Promise<UserEntity[]> {
+  async findUserAndCount(params: FindUserParams): Promise<{ items: UserEntity[]; total: number }> {
     const [items, total] = await this.qb(params).getManyAndCount();
 
     return {
@@ -28,8 +29,8 @@ export class UserRepository {
     };
   }
 
-  async updateUserById(params: any): Promise<UserEntity> {
-    await this.userRepository.update({ userId: params.userId }, params);
+  async updateUser(id: string, updatedUser: UpdateUserDto): Promise<void> {
+    await this.userRepository.update({ userId: id }, updatedUser);
   }
 
   async deleteUser(userId: string): Promise<void> {

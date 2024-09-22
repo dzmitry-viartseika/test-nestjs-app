@@ -13,7 +13,7 @@ export type CheckExistUserParams = {
 
 export type ChangeBalanceParams = {
   userId: string;
-  balance: string;
+  balance?: string;
 };
 
 export enum TransactionType {

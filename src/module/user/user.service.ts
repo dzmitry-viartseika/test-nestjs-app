@@ -40,15 +40,15 @@ export class UserService {
     return { items: result, total };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(id: string) {
+    return this.userRepository.findUserById(id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user with updated information ${updateUserDto}`;
+  update(id: string, updateUserDto: UpdateUserDto) {
+    return this.userRepository.updateUser(id, updateUserDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string) {
+    return this.userRepository.deleteUser(id)
   }
 }
