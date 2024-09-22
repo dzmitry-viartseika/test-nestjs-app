@@ -10,7 +10,7 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async create(user: CreateUserDto): Promise<void> {
-    console.log('user', user);
+    console.log('user111', user);
     const salt = crypto.randomBytes(32);
     const hash = await argon.hash(user.password, { salt });
 
