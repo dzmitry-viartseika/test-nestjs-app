@@ -8,12 +8,14 @@ export class UserRepository {
     private readonly userRepository: Repository<UserEntity>,
   ) {}
 
-  async createUser<T extends DeepPartial<UserEntity>>(entity: T): Promise<UserEntity> {
+  async createUser<T extends DeepPartial<UserEntity>>(
+    entity: T,
+  ): Promise<UserEntity> {
     return this.userRepository.save(entity);
   }
 
   async findUserById(userId: string): Promise<UserEntity> {
-    return this.userRepository.findOneBy({userId})
+    return this.userRepository.findOneBy({ userId });
   }
 
   async findUserAndCount(params: any): Promise<UserEntity[]> {
@@ -22,14 +24,14 @@ export class UserRepository {
     return {
       items,
       total,
-    }
+    };
   }
 
   async updateUserById(params: any): Promise<UserEntity> {
-    await this.userRepository.update({userId: params.userId}, params)
+    await this.userRepository.update({ userId: params.userId }, params);
   }
 
   async deleteUser(userId: string): Promise<void> {
-    await this.userRepository.delete({userId});
+    await this.userRepository.delete({ userId });
   }
 }

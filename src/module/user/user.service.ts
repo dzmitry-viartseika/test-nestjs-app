@@ -7,12 +7,10 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(
-    private readonly userRepository: UserRepository,
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async create(user: CreateUserDto): Promise<void> {
-    console.log('user111', user);
+    console.log('user', user);
     const salt = crypto.randomBytes(32);
     const hash = await argon.hash(user.password, { salt });
 
